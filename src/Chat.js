@@ -51,7 +51,7 @@ const Chat = () => {
 
 
     const webSocketLogin = useCallback(() => {
-        ws.current = new WebSocket("ws://15.165.236.184:9000/socket/chatt");
+        ws.current = new WebSocket("ws://13.125.248.90:9000/socket/chatt");
 
         ws.current.onmessage = (message) => {
             const dataSet = JSON.parse(message.data);
