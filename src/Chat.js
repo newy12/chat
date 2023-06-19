@@ -9,6 +9,7 @@ const Chat = () => {
     const [chatt, setChatt] = useState([]);
     const [chkLog, setChkLog] = useState(false);
     const [socketData, setSocketData] = useState();
+    const messageEndRef = useRef(null);
 
     const ws = useRef(null);    //webSocket을 담는 변수,
                                 //컴포넌트가 변경될 때 객체가 유지되어야하므로 'ref'로 저장
@@ -19,6 +20,9 @@ const Chat = () => {
             <span>{item.msg}</span>
         </div>
     ));
+    useEffect(() => {
+        messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, [msgBox]);
 
     useEffect(() => {
         if(socketData !== undefined) {
@@ -110,6 +114,7 @@ const Chat = () => {
                     <div id='talk'>
                         <div className='talk-shadow'></div>
                         {msgBox}
+                        <div ref={messageEndRef}></div>
                     </div>
                     <input disabled={chkLog}
                            placeholder='이름을 입력하세요.'
